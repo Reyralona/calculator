@@ -1,16 +1,19 @@
 :root {
     --backcolor: rgb(88, 88, 88);
-    --calcback: rgb(37, 37, 37);
-}
-
-* {
-    margin: 0px;
-    padding: 0px;
+    --calccolor: rgb(0, 0, 0);
+    --calcback: rgb(41, 41, 41);
+    --displaycolor: rgb(0, 255, 0);
+    --calcfontcolor: rgb(255, 255, 255);
 }
 
 @font-face {
     font-family: 'VT323';
     src: url('/fonts/VT323-Regular.ttf');
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
 }
 
 body {
@@ -28,13 +31,14 @@ body {
 .calculator {
     display: flex;
     flex-direction: column;
-    background-color: rgb(0, 0, 0);
+    background-color: var(--calccolor);
     width: 320px;
     height: fit-content;
     text-align: center;
     padding: 12px;
     border-radius: 10px;
     gap: 10px;
+    color: var(--calcfontcolor);
 }
 
 .resultbox {
@@ -45,7 +49,7 @@ body {
     width: 100%;
     height: 50px;
     background-color: var(--calcback);
-    color: rgb(0, 255, 42);
+    color: var(--displaycolor);
 }
 
 .resultbox>span {

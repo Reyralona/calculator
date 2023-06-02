@@ -1,28 +1,27 @@
+function buttonSound(){
+    var buttonSounds = ['button1', 'button2', 'button3']
+    const randombutton = buttonSounds[Math.floor(Math.random() * buttonSounds.length)];
 
-function nice() {
-    console.log("( ͡° ͜ʖ ͡°)")
-    var audio = new Audio('/sounds/nice.mp3');
+    var audio = new Audio(`/sounds/${randombutton}.mp3`);
     audio.loop = false;
     audio.play();
 }
 
 function addToResultBox(value) {
+
     if (resultboxstring === '0') {
-        string = value;
-        resultboxstring = string;
+        resultboxstring = value;
         updateResultBox()
         return;
     }
     else if (resultboxstring.slice(-1) === '+' || resultboxstring.slice(-1) === '*' || resultboxstring.slice(-1) === '/' || resultboxstring.slice(-1) === '-' || resultboxstring.slice(-1) === '.') {
         if (value === '+' || value === '-' || value === '*' || value === '/' || value == '.') {
-            string = resultboxstring.slice(0, -1) + value;
-            resultboxstring = string;
+            resultboxstring = resultboxstring.slice(0, -1) + value;
             updateResultBox()
             return;
         }
         else {
-            string = resultboxstring.concat(value);
-            resultboxstring = string;
+            resultboxstring = resultboxstring.concat(value);
             updateResultBox()
         }
     }
@@ -30,34 +29,42 @@ function addToResultBox(value) {
         return;
     }
     else {
-        string = resultboxstring.concat(value);
-        resultboxstring = string;
+        resultboxstring = resultboxstring.concat(value);
         updateResultBox()
     }
 }
 
+function deleteLast(){
+
+    if (resultboxstring.length === 1){
+        resultboxstring = '0';
+        updateResultBox();
+        return;
+    }
+    resultboxstring = resultboxstring.substring(0, resultboxstring.length - 1);
+    updateResultBox();
+}
+
 function clearResultBox() {
+
     resultboxstring = '0';
     resultbox.innerText = '0';
     updateResultBox();
 }
 function updateResultBox() {
-    if (resultboxstring == '69') {
-        nice()
+    if (resultboxstring === ''){
+        resultbox.innerText = '0';
     }
 
     resultbox.innerText = resultboxstring;
 }
 function getResult() {
+
     res = String(eval(resultboxstring));
     if (res.length > 14) {
         res = res.slice(0, 6)
     }
     resultboxstring = res;
-
-    if (resultboxstring == '69') {
-        nice()
-    }
     resultbox.innerText = res;
 }
 
@@ -66,9 +73,10 @@ const resultbox = document.getElementById("resultbox");
 // functions
 const equals = document.getElementById("equals").addEventListener("click", getResult);
 const clear = document.getElementById("clear").addEventListener("click", clearResultBox);
+const back = document.getElementById("back").addEventListener("click", deleteLast)
 
 var buttonNUMS = ["num0", "num1", "num2", "num3", "num4", "num5", "num6", "num7", "num8", "num9"];
-var buttonOPERATIONS = [['minus', '-'], ['add', '+'], ['divide', '/'], ['times', '*'], ['point', '.'], ['power', '**']];
+var buttonOPERATIONS = [['minus', '-'], ['add', '+'], ['divide', '/'], ['times', '*'], ['point', '.']];
 
 var resultboxstring = '0'
 
