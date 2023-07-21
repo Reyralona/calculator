@@ -2,7 +2,7 @@ function buttonSound(){
     var buttonSounds = ['button1', 'button2', 'button3']
     const randombutton = buttonSounds[Math.floor(Math.random() * buttonSounds.length)];
 
-    var audio = new Audio(`/sounds/${randombutton}.mp3`);
+    var audio = new Audio(`sounds/${randombutton}.mp3`);
     audio.loop = false;
     audio.play();
 }
